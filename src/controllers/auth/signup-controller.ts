@@ -14,7 +14,7 @@ const schema = z.object({
   }),
 });
 
-export class SignupController {
+export class SignUpController {
   static async handler(request: FastifyRequest, reply: FastifyReply) {
     const { user, organization } = schema.parse(request.body);
     const userAlreadyExists = await db.user.findUnique({
