@@ -24,6 +24,7 @@
     "typescript-eslint": "^8.72.2"
   },
   "dependencies": {
+    "@fastify/jwt": "^10.2.7",
     "@prisma/client": "6.3.1",
     "bcryptjs": "^3.0.3",
     "fastify": "5.2.1",
