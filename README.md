@@ -3,11 +3,11 @@
 A REST API built with Fastify, Prisma and PostgreSQL for multi-tenant SaaS-style applications, with user authentication, organization management and lead tracking.
 
 <p align="center">
-  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript&logoColor=white" />
+  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-7.0-3178C6?logo=typescript&logoColor=white" />
   <img alt="Node.js" src="https://img.shields.io/badge/Node.js-20+-339933?logo=nodedotjs&logoColor=white" />
   <img alt="Fastify" src="https://img.shields.io/badge/Fastify-5.x-000000?logo=fastify&logoColor=white" />
   <img alt="PostgreSQL" src="https://img.shields.io/badge/PostgreSQL-16-336791?logo=postgresql&logoColor=white" />
-  <img alt="Prisma" src="https://img.shields.io/badge/Prisma-6.x-2D3748?logo=prisma&logoColor=white" />
+  <img alt="Prisma" src="https://img.shields.io/badge/Prisma-7.x-2D3748?logo=prisma&logoColor=white" />
 </p>
 
 ## About
@@ -33,6 +33,7 @@ The application is structured to support a SaaS flow where each organization can
 - [TypeScript](https://www.typescriptlang.org/)
 - [Prisma](https://www.prisma.io/)
 - [PostgreSQL](https://www.postgresql.org/)
+- [node-postgres](https://node-postgres.com/) with the Prisma PostgreSQL driver adapter
 - [JWT](https://jwt.io/)
 - [bcryptjs](https://www.npmjs.com/package/bcryptjs)
 - [Zod](https://zod.dev/)
@@ -42,7 +43,8 @@ The application is structured to support a SaaS flow where each organization can
 Before starting, make sure you have:
 
 - [Git](https://git-scm.com/)
-- [Node.js](https://nodejs.org/) (LTS recommended)
+- [Node.js](https://nodejs.org/) 20.19+, 22.13+, or 24+
+- [pnpm](https://pnpm.io/)
 - [Docker](https://www.docker.com/) and Docker Compose (for the PostgreSQL container)
 
 ## Getting Started
@@ -54,10 +56,10 @@ git clone https://github.com/davi1985/multitenant-application.git
 cd multitenant-application
 ```
 
-### 2) Install dependencies
+### 2) Install dependencies and generate the Prisma Client
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### 3) Start the database
@@ -80,19 +82,26 @@ JWT_SECRET="unsecure-secret"
 ### 5) Run Prisma migrations
 
 ```bash
-npx prisma migrate dev
+pnpm exec prisma migrate dev
 ```
 
 ### 6) Start the API
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 The server starts on:
 
 ```text
 http://localhost:3001
+```
+
+To compile the API and run the compiled output:
+
+```bash
+pnpm build
+pnpm start
 ```
 
 ## API routes

@@ -8,7 +8,11 @@
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
-    "lint": "eslint . --ext .ts,.tsx,.js,.jsx"
+    "lint": "eslint 'src/**/*.ts' --ignore-pattern 'src/generated/**' prisma.config.ts",
+    "postinstall": "prisma generate"
+  },
+  "engines": {
+    "node": "^20.19 || ^22.13 || >=24"
   },
   "keywords": [],
   "author": "",
@@ -16,18 +20,23 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/node": "^26.6.6",
-    "eslint": "^8.57.1",
+    "@types/pg": "8.23.1",
+    "@typescript/native": "npm:typescript@7.0.2",
+    "eslint": "^10.14.0",
     "globals": "^17.14.0",
-    "prisma": "6.3.1",
+    "prisma": "7.10.1",
     "tsx": "^4.23.15",
-    "typescript": "^5.0.2",
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
     "typescript-eslint": "^8.72.2"
   },
   "dependencies": {
     "@fastify/jwt": "^10.2.7",
-    "@prisma/client": "6.3.1",
+    "@prisma/adapter-pg": "7.10.1",
+    "@prisma/client": "7.10.1",
     "bcryptjs": "^3.0.3",
-    "fastify": "5.2.1",
+    "dotenv": "18.0.10",
+    "fastify": "5.12.8",
+    "pg": "8.23.1",
     "zod": "^4.6.7"
   }
 }
