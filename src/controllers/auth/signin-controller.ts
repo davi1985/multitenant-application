@@ -16,12 +16,6 @@ export class SignInController {
       select: {
         id: true,
         password: true,
-        organizations: {
-          take: 1,
-          where: {
-            role: "OWNER",
-          },
-        },
       },
     });
 
@@ -29,17 +23,8 @@ export class SignInController {
       return reply.code(401).send({ error: "Invalid credentials" });
     }
 
-    const [org] = user.organizations;
-    if (!org) {
-      return reply
-        .code(403)
-        .send({ error: "You do not have an organization " });
-    }
-
     const accessToken = request.server.jwt.sign({
       sub: user.id,
-      organizationId: org.organizationId,
-      role: org.role,
     });
 
     reply.code(200).send({ accessToken });
