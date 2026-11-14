@@ -1,5 +1,5 @@
 import Fastify from "fastify";
-import { routes } from "./routes/index.js";
+import { routes } from "./routes/index";
 import { ZodError } from "zod";
 import fastifyJwt from "@fastify/jwt";
 

@@ -1,5 +1,5 @@
 import type { FastifyPluginAsync } from "fastify";
-import { AuthenticationMiddleware } from "../middlewares/authentication-middleware.js";
+import { AuthenticationMiddleware } from "../middlewares/authentication-middleware";
 import { authRoutes } from "./auth";
 import { leadsRoutes } from "./leads";
 import { organizationsRoutes } from "./organizations";
