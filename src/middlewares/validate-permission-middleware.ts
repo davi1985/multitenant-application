@@ -24,6 +24,8 @@ export class ValidatePermissionMiddleware {
           .code(403)
           .send({ error: "You don't have access to this organization" });
       }
+
+      request.organizationUser = organizationUser;
     } catch {
       return reply
         .code(403)
