@@ -1,11 +1,11 @@
 import type { FastifyReply, FastifyRequest } from "fastify";
 import { db } from "../../lib/db";
 
-export class ListOrgMembersController {
+export class ListOrgUsersController {
   static async handler(request: FastifyRequest, reply: FastifyReply) {
     const { organizationId } = request.organizationUser;
 
-    const members = await db.organizationUser.findMany({
+    const users = await db.organizationUser.findMany({
       where: {
         organizationId,
       },
@@ -22,7 +22,7 @@ export class ListOrgMembersController {
     });
 
     return {
-      members,
+      members: users,
     };
   }
 }

@@ -2,7 +2,7 @@ import type { FastifyPluginAsync } from "fastify";
 import { CreateLeadController } from "../controllers/leads/create-lead-controller";
 import { ListLeadsController } from "../controllers/leads/list-leads-controller";
 import { ValidatePermissionMiddleware } from "../middlewares/validate-permission-middleware";
-import { ListOrgMembersController } from "../controllers/organizations/list-org-members-controller";
+import { ListOrgUsersController } from "../controllers/organizations/list-org-users-controller";
 
 export const organizationRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.addHook(
@@ -10,5 +10,5 @@ export const organizationRoutes: FastifyPluginAsync = async (fastify) => {
     ValidatePermissionMiddleware.verify(["ADMIN", "OWNER"]),
   );
 
-  fastify.get("/", ListOrgMembersController.handler);
+  fastify.get("/", ListOrgUsersController.handler);
 };
