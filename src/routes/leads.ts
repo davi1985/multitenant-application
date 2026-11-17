@@ -1,6 +1,6 @@
 import type { FastifyPluginAsync } from "fastify";
 import { routeAdapter } from "../adapters/route-adapter";
-import { CreateLeadController } from "../controllers/leads/create-lead-controller";
+import { makeCreateLeadController } from "../factories/make-create-lead-controller";
 import { makeListLeadsController } from "../factories/make-list-controller";
 import { ValidatePermissionMiddleware } from "../middlewares/validate-permission-middleware";
 
@@ -14,6 +14,6 @@ export const leadsRoutes: FastifyPluginAsync = async (fastify) => {
     {
       onRequest: [ValidatePermissionMiddleware.verify(["ADMIN", "OWNER"])],
     },
-    CreateLeadController.handler,
+    routeAdapter(makeCreateLeadController),
   );
 };
