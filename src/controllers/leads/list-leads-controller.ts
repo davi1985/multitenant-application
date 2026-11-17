@@ -1,19 +1,11 @@
-import type { FastifyReply, FastifyRequest } from "fastify";
-import { db } from "../../lib/db";
+import type { IController } from "../../interfaces/IController";
+import { LeadsRepository } from "../../repositories/leads-repository";
 
-export class ListLeadsController {
-  static async handler(request: FastifyRequest, reply: FastifyReply) {
-    const { organizationId } = request.organizationUser;
+export class ListLeadsController implements IController {
+  constructor(private leadsRepository: LeadsRepository) {}
 
-    if (!organizationId || typeof organizationId !== "string") {
-      return reply.code(403).send({ error: "Organization is missing" });
-    }
-
-    const leads = await db.lead.findMany({
-      where: {
-        organizationId,
-      },
-    });
+  async handler() {
+    const leads = await this.leadsRepository.findAll();
 
     return {
       leads,
