@@ -1,9 +1,8 @@
 import type { FastifyPluginAsync } from "fastify";
-import { CreateLeadController } from "../controllers/leads/create-lead-controller";
-import { ListLeadsController } from "../controllers/leads/list-leads-controller";
-import { ValidatePermissionMiddleware } from "../middlewares/validate-permission-middleware";
+import { routeAdapter } from "../adapters/route-adapter";
 import { ListOrgUsersController } from "../controllers/organizations/list-org-users-controller";
-import { ListUserOrgsController } from "../controllers/organizations/list-user-orgs-controller";
+import { makeListUserOrgsController } from "../factories/make-list-user-orgs-controller";
+import { ValidatePermissionMiddleware } from "../middlewares/validate-permission-middleware";
 
 export const organizationRoutes: FastifyPluginAsync = async (fastify) => {
   fastify.get(
@@ -14,5 +13,8 @@ export const organizationRoutes: FastifyPluginAsync = async (fastify) => {
     ListOrgUsersController.handler,
   );
 
-  fastify.get("/", ListUserOrgsController.handler);
+  fastify.get(
+    "/",
+    routeAdapter(makeListUserOrgsController, { orgRequired: false }),
+  );
 };
